@@ -14,6 +14,9 @@
 #define NICKEL 5
 #define PENNY 1
 
+#define TRUE 0
+#define FALSE 1
+
 /**
 *
 * This function is used to check the user input is within the range.
@@ -22,9 +25,9 @@
 int CheckInput(float input_number)
 {
     if(input_number >= 0)
-        return 0;
+        return TRUE;
     else
-        return 1;
+        return FALSE;
 }
 
 /**
@@ -44,7 +47,7 @@ int main()
         input = GetFloat();
         
         // Validate the user input
-        if(CheckInput(input) == 1)
+        if(CheckInput(input) == FALSE)
         {
             continue;
         }
@@ -60,23 +63,27 @@ int main()
     while(input_cents > 0.0)
     {
         //printf("input_cents=%f\n",input_cents);
-        if(input_cents >= 25)
+        if(input_cents >= QUATAR)
         {
-            input_cents = input_cents - 25;
+            // This means the input is can be subtracted by a QUATAR
+            input_cents = input_cents - QUATAR;
             number_of_coins++;  
         }
-        else if(input_cents < 25 && input_cents >=10)
+        else if(input_cents < QUATAR && input_cents >= DIME)
         {
-            input_cents = input_cents -10;
+            // This means the input is can be subtracted by a DIME
+            input_cents = input_cents - DIME;
             number_of_coins++; 
         }
-        else if(input_cents < 10 && input_cents >=5)
+        else if(input_cents < DIME && input_cents >= NICKEL)
         {
-            input_cents = input_cents -5;
+            // This means the input is can be subtracted by a NICKEL
+            input_cents = input_cents - NICKEL;
             number_of_coins++; 
         }
         else
         {
+            // This means remaining are PENNIES. So just add as many number of pennies.
             number_of_coins = number_of_coins + input_cents;
             input_cents = 0;
         }
