@@ -28,43 +28,42 @@ int CheckInput(int input_number)
 */
 int main()
 {
-    int n;
-    int spaces = n-1,pounds = 2;
+    int input;
+    int spaces = 0,pounds = 0;
     int space_counter = 0, pound_counter = 0;
     do
     {
         // Get the user input
         printf("Height: ");
-        n = GetInt();
+        input = GetInt();
         
         // Validate the user input
-        if(CheckInput(n) == 1)
+        if(CheckInput(input) == 1)
             continue;
-        
-        // Initial values for paces and pounds    
-        spaces = n-1;
-        pounds = 2;
-        
-        // Lets Start
-        while(n>0)
-        {
-            for (space_counter=spaces;space_counter>0;space_counter--)
-            {
-                printf(" ");
-            }
-            spaces--;
-            
-            for (pound_counter=0;pound_counter<pounds;pound_counter++)
-            {
-                printf("#");   
-            }
-            pounds++;
-            
-            printf("\n");
-            n--;
-        }
-    }while(n < 0 || n > 23);
+    }while(input < 0 || input > 23);
+    // Initial values for paces and pounds    
+    spaces = input-1;
+    pounds = 2;
     
+    // Lets Start
+    while(input>0)
+    {
+        for (space_counter=spaces;space_counter>0;space_counter--)
+        {
+            printf(" ");
+        }
+        spaces--;
+        
+        for (pound_counter=0;pound_counter<pounds;pound_counter++)
+        {
+            printf("#");   
+        }
+        pounds++;
+        
+        printf("\n");
+        input--;
+    }
+
     // Good Bye
     return 0;
 }

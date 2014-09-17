@@ -48,41 +48,41 @@ int main()
         {
             continue;
         }
-        // Convert to cents
-        input_cents = (float)round(input * 100);
         
-        // Lets Start
-        
-        int number_of_coins = 0;
-        
-        while(input_cents > 0.0)
-        {
-            //printf("input_cents=%f\n",input_cents);
-            if(input_cents >= 25)
-            {
-                input_cents = input_cents - 25;
-                number_of_coins++;  
-            }
-            else if(input_cents < 25 && input_cents >=10)
-            {
-                input_cents = input_cents -10;
-                number_of_coins++; 
-            }
-            else if(input_cents < 10 && input_cents >=5)
-            {
-                input_cents = input_cents -5;
-                number_of_coins++; 
-            }
-            else
-            {
-                number_of_coins = number_of_coins + input_cents;
-                input_cents = 0;
-            }
-        }
-        printf("%d\n", number_of_coins);
-        break;
-
     }while(input < 0.0);
+    // Convert to cents
+    input_cents = (float)round(input * 100);
+    
+    // Lets Start
+    
+    int number_of_coins = 0;
+    
+    while(input_cents > 0.0)
+    {
+        //printf("input_cents=%f\n",input_cents);
+        if(input_cents >= 25)
+        {
+            input_cents = input_cents - 25;
+            number_of_coins++;  
+        }
+        else if(input_cents < 25 && input_cents >=10)
+        {
+            input_cents = input_cents -10;
+            number_of_coins++; 
+        }
+        else if(input_cents < 10 && input_cents >=5)
+        {
+            input_cents = input_cents -5;
+            number_of_coins++; 
+        }
+        else
+        {
+            number_of_coins = number_of_coins + input_cents;
+            input_cents = 0;
+        }
+    }
+    printf("%d\n", number_of_coins);
+
     
     // Good Bye
     return 0;
