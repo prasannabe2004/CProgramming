@@ -22,6 +22,7 @@
 int main(int argc, string argv[])
 {
     // TODO: comment me
+    /* Validate the number of command line arguments*/
     if (argc != 2 && argc != 3)
     {
         printf("Usage: ./generate n [s]\n");
@@ -29,9 +30,11 @@ int main(int argc, string argv[])
     }
 
     // TODO: comment me
+    /* Number of random numbers to be generated */
     int n = atoi(argv[1]);
 
     // TODO: comment me
+    /* Check the 3rd command line argument for seed. If not found use dafault. */
     if (argc == 3)
     {
         srand((unsigned int) atoi(argv[2]));
@@ -42,6 +45,7 @@ int main(int argc, string argv[])
     }
 
     // TODO: comment me
+    /* Generate n numbers of random number less than 65536 */
     for (int i = 0; i < n; i++)
     {
         printf("%i\n", rand() % LIMIT);
