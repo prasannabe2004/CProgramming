@@ -159,10 +159,10 @@ void draw(void)
     {
         for (int j=0;j<d;j++)
         {
-            //if (board[i][j] != 0)
+            if (board[i][j] != 0)
                 printf("%2d ", board[i][j]);
-            //else
-                //printf("%2c ", '_');
+            else
+                printf("%2c ", '_');
         }
         printf("\n");
     }
@@ -171,11 +171,11 @@ void draw(void)
 void swapValues(int src_row,int src_col,int dst_row, int dst_col)
 {
     int temp = 0 ;
-    printf("before swapping %d %d\n",board[src_row][src_col], board[dst_row][dst_col]);
+    //printf("before swapping %d %d\n",board[src_row][src_col], board[dst_row][dst_col]);
     temp = board[src_row][src_col];
     board[src_row][src_col] = board[dst_row][dst_col];
     board[dst_row][dst_col] = temp;
-    printf("after swapping %d %d\n",board[src_row][src_col], board[dst_row][dst_col]);
+    //printf("after swapping %d %d\n",board[src_row][src_col], board[dst_row][dst_col]);
 }
 /**
  * If tile borders empty space, moves tile and returns true, else
@@ -184,55 +184,48 @@ void swapValues(int src_row,int src_col,int dst_row, int dst_col)
 bool move(int tile)
 {
     // TODO
-    int flag = 0, i, j, blank_row,blank_col;
+    int flag = 0, i, j, tile_row=0,tile_col=0;
     for (  i =0;i<d;i++)
     {
         for ( j=0;j<d;j++)
         {
             if(board[i][j] == tile)
             {
+                //printf("tile found\n");
                 flag = 1;
-                blank_row = i;
-                blank_col = j;
+                tile_row = i;
+                tile_col = j;
                 break;
             }
         }
         if(flag)
             break;
     }
-    printf("Tile is at %d,%d\n",blank_row,blank_col);
+    //printf("Tile is at %d,%d\n",tile_row,tile_col);
     
-    if((blank_row+1 <d-1 || blank_col+1 <d-1 || blank_row-1 >=0 || blank_col-1 >=0))
+    if (board[tile_row][tile_col+1] == 0 && tile_col+1 <=d-1 )
     {
-        printf("%d %d %d %d\n",blank_row+1 <d-1, blank_col+1 <d-1, blank_row-1 >=0, blank_col-1 >=0);
-        if (board[blank_row][blank_col+1] == 0 && blank_col+1 <d-1 )
-        {
-            printf("case1 swapping %d@%d,%d %d@%d,%d\n",board[blank_row][blank_col],blank_row,blank_col,board[blank_row][blank_col+1],blank_row,blank_col+1);
-            swapValues(blank_row,blank_col,blank_row, blank_col+1);
-            for (int i =0 ;i<d;i++)
-                for (int j=0;j<d;j++)
-                    printf("%d ",board[i][j]);
-            printf("\n");
-            return true;
-        }
-        else if (board[blank_row][blank_col-1] == 0 && blank_col-1 >=0)
-        {
-            printf("case2\n");
-            swapValues(blank_row,blank_col,blank_row, blank_col-1);
-            return true;
-        }
-        else if (board[blank_row+1][blank_col] == 0 && blank_row+1 >=d-1)
-        {
-            printf("case3\n");
-            swapValues(blank_row,blank_col,blank_row+1, blank_col);
-            return true;
-        }
-        else if (board[blank_row-1][blank_col] == 0 && blank_row-1 >=0)
-        {
-            printf("case4\n");
-            swapValues(blank_row,blank_col,blank_row-1, blank_col);
-            return true;
-        }
+        //printf("case1 swapping %d@%d,%d %d@%d,%d\n",board[tile_row][tile_col],tile_row,tile_col,board[tile_row][tile_col+1],tile_row,tile_col+1);
+        swapValues(tile_row,tile_col,tile_row, tile_col+1);
+        return true;
+    }
+    else if (board[tile_row][tile_col-1] == 0 && tile_col-1 >=0)
+    {
+        //printf("case2 swapping %d@%d,%d %d@%d,%d\n",board[tile_row][tile_col],tile_row,tile_col,board[tile_row][tile_col-1],tile_row,tile_col-1);
+        swapValues(tile_row,tile_col,tile_row, tile_col-1);
+        return true;
+    }
+    else if (board[tile_row+1][tile_col] == 0 && tile_row+1 <=(d-1))
+    {
+        //printf("case3 swapping %d@%d,%d %d@%d,%d\n",board[tile_row][tile_col],tile_row,tile_col,board[tile_row+1][tile_col],tile_row+1,tile_col);
+        swapValues(tile_row,tile_col,tile_row+1, tile_col);
+        return true;
+    }
+    else if (board[tile_row-1][tile_col] == 0 && tile_row-1 >=0)
+    {
+        //printf("case4 swapping %d@%d,%d %d@%d,%d\n",board[tile_row][tile_col],tile_row,tile_col,board[tile_row-1][tile_col],tile_row-1,tile_col);
+        swapValues(tile_row,tile_col,tile_row-1, tile_col);
+        return true;
     }
     return false;
 }
@@ -244,7 +237,29 @@ bool move(int tile)
 bool won(void)
 {
     // TODO
-    return false;
+    int i = 0, j = 0,  k = 0;
+
+    for (i =0 ;i<d;i++)
+    {
+        for (j=0;j<d;j++)
+        {
+            k++;
+            //printf("tile = %d k=%d i=%d j=%d\n",board[i][j], k,i,j);
+            if ( board[i][j] != k && k != (d*d))
+            {
+                return false;
+            } 
+        }
+    }
+    if (k == d*d && board[d-1][d-1] == 0)
+    {
+        return true;
+    }
+    else
+    {
+        printf("falling to default\n");
+        return false;
+    }
 }
 
 /**
