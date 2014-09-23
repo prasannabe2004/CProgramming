@@ -69,11 +69,49 @@ int main(void)
 
     // number of points initially
     int points = 0;
-
+    
+    double x_velocity = 1.5;
+    double y_velocity = 3.0;
+        
+    waitForClick();
+    
     // keep playing until game over
     while (lives > 0 && bricks > 0)
     {
-        // TODO
+        move(ball, x_velocity, y_velocity);
+        pause(10);
+        GEvent event = getNextEvent(MOUSE_EVENT);
+        if (event != NULL)
+        {
+            if (getEventType(event) == MOUSE_MOVED)
+            {
+                double x = getX(event);
+                double y = 500;
+                setLocation(paddle, x, y);
+            }
+        }
+        if ((getX(ball) + getWidth(ball) >= getWidth(window)) || getX(ball) <= 0 )
+        {
+            x_velocity = -x_velocity;
+        }
+        if (getY(ball) <= 0)
+        {
+            y_velocity = -y_velocity;
+        }
+        GObject object = detectCollision(window,ball);
+        if (object) // Thanks GDB
+        {
+            if(object == paddle)
+            {
+                y_velocity = -y_velocity;
+            }
+            else if(strcmp(getType(object), "GRect") == 0)
+            {
+                removeGWindow(window,object);
+                y_velocity = -y_velocity;
+            }
+        }
+        
     }
 
     // wait for click before exiting
@@ -90,6 +128,24 @@ int main(void)
 void initBricks(GWindow window)
 {
     // TODO
+    int x = 0, y =0; 
+    #define BRICK_WIDTH   30
+    #define BRICK_HEIGHT  10  
+    for (int i =0;i<ROWS;i++)
+    {
+        for (int j=0;j<COLS;j++)
+        {
+            GRect rect = newGRect(x,y, BRICK_WIDTH, BRICK_HEIGHT);
+            setColor(rect, "RED");
+            setFilled(rect, true);
+            add(window, rect);
+            x = x + 50;
+            setLocation(window, x,y);
+        }
+        x = 0;
+        y = y + 20;
+        setLocation(window, x,y);
+    }
 }
 
 /**
@@ -98,7 +154,13 @@ void initBricks(GWindow window)
 GOval initBall(GWindow window)
 {
     // TODO
-    return NULL;
+    // instantiate circle
+    GOval circle = newGOval(0, 0, RADIUS, RADIUS);
+    add(window, circle);
+    setColor(circle, "BLACK");
+    setFilled(circle, true);
+    setLocation(circle, 200-(RADIUS/2),300-(RADIUS/2));
+    return circle;
 }
 
 /**
@@ -107,7 +169,11 @@ GOval initBall(GWindow window)
 GRect initPaddle(GWindow window)
 {
     // TODO
-    return NULL;
+    GRect rectangle = newGRect(0,500, 60, 20);
+    setColor(rectangle, "RED");
+    setFilled(rectangle, true);
+    add(window, rectangle);
+    return rectangle;
 }
 
 /**
