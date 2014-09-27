@@ -1,5 +1,9 @@
-0.  TODO
-1.  TODO
+0.  JPEG supports 16.7 billon colors
+    GIF Supports 256 colors
+    BMP supports
+    PNG supports 16.7 million colors
+    
+1.  Lossless: 
 2.  TODO
 3.  TODO
 4.  TODO
