@@ -76,13 +76,30 @@ int main(int argc, char* argv[])
         for (int j = 0; j < bi.biWidth; j++)
         {
             // temporary storage
-            RGBTRIPLE triple;
+            RGBTRIPLE triple,newtriple;
 
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-
+            if (triple.rgbtBlue == 0x00 && triple.rgbtRed == 0xFF && triple.rgbtGreen == 0x00)
+            {
+                newtriple.rgbtBlue = triple.rgbtBlue;
+                newtriple.rgbtRed = 0x00;
+                newtriple.rgbtGreen = triple.rgbtGreen;
+            }
+            else if (triple.rgbtBlue == 0xFF && triple.rgbtRed == 0xFF && triple.rgbtGreen == 0xFF)
+            {
+                newtriple.rgbtBlue = 0x00;
+                newtriple.rgbtRed = 0x00;
+                newtriple.rgbtGreen = 0x00;
+            }
+            else
+            {
+                newtriple.rgbtBlue = triple.rgbtBlue;
+                newtriple.rgbtRed = triple.rgbtRed;
+                newtriple.rgbtGreen = triple.rgbtGreen;    
+            }
             // write RGB triple to outfile
-            fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+            fwrite(&newtriple, sizeof(RGBTRIPLE), 1, outptr);
         }
 
         // skip over padding, if any
