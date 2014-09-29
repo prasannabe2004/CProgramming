@@ -16,12 +16,22 @@
 4.  What happens, technically speaking, when a file is deleted on a FAT file system?
     First, the system modifies the filename’s first character in the file’s directory entry to signal that the file has been deleted and that the directory entry can be recycled. Second, the system moves all of the file’s FAT clusters to the hard drive’s list of free clusters. The actual file data is never touched. 
 
-5.  TODO
-6.  TODO
-7.  TODO
-8.  TODO
-9.  TODO
-10. TODO
+5.  What can someone like you do to ensure (with high probability) that files you delete cannot be recovered?
+    1. Use tool to which can write Gutmann's pattern
+6.  What’s stdint.h?
+    There are predefined(typedefed) types which are useful and more conveninent to use. Those typedefs are declred in stdint.h
+7.  What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+    These are easy to use because they are already defined ad part of stdint.h. The naming convention used in these typedefs cleary signify the nature of the value and size it supports.
+8.  How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+    Size of BYTE = 1
+    Size of DWORD = 4
+    Size of LONG = 4
+    Size of WORD = 2
+9.  What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? 
+    First 2 bytes represents type of the file.
+    BM, 66, 42	
+10. What’s the difference between bfSize and biSize?
+    
 11. TODO
 12. TODO
 13. TODO
