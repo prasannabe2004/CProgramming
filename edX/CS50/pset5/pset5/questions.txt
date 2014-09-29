@@ -1,12 +1,21 @@
-0.  JPEG supports 16.7 billon colors
+0.  How many different colors does each format support?
+    JPEG supports 16.7 billon colors
     GIF Supports 256 colors
     BMP supports
     PNG supports 16.7 million colors
-    
-1.  Lossless: 
-2.  TODO
-3.  TODO
-4.  TODO
+1.  Which of these formats supports animation?
+        
+2.  What’s the difference between lossy and lossless compression?
+    Lossless data compression is a class of data compression algorithms that allows the original data to be perfectly reconstructed from the compressed data. By contrast, lossy data compression permits reconstruction only of an approximation of the original data, though this usually improves compression rates.
+    Lossy compression is the class of data encoding methods that uses inexact approximations (or partial data discarding) for representing the content that has been encoded. Such compression techniques are used to reduce the amount of data that would otherwise be needed to store, handle, and/or transmit the represented content.
+
+3.  Which of these formats is lossy-compressed?
+    Lossy compression techniques: JPEG, BMP
+    Lossless Compression Techniques: PNG, GIF
+
+4.  What happens, technically speaking, when a file is deleted on a FAT file system?
+    First, the system modifies the filename’s first character in the file’s directory entry to signal that the file has been deleted and that the directory entry can be recycled. Second, the system moves all of the file’s FAT clusters to the hard drive’s list of free clusters. The actual file data is never touched. 
+
 5.  TODO
 6.  TODO
 7.  TODO
