@@ -1,10 +1,12 @@
 0.  How many different colors does each format support?
     JPEG supports 16.7 billon colors
     GIF Supports 256 colors
-    BMP supports
+    BMP supports 16.7 billon colors
     PNG supports 16.7 million colors
+    
 1.  Which of these formats supports animation?
-        
+    GIF
+    
 2.  What’s the difference between lossy and lossless compression?
     Lossless data compression is a class of data compression algorithms that allows the original data to be perfectly reconstructed from the compressed data. By contrast, lossy data compression permits reconstruction only of an approximation of the original data, though this usually improves compression rates.
     Lossy compression is the class of data encoding methods that uses inexact approximations (or partial data discarding) for representing the content that has been encoded. Such compression techniques are used to reduce the amount of data that would otherwise be needed to store, handle, and/or transmit the represented content.
@@ -32,21 +34,25 @@
     Size of WORD = 2
 
 9.  What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? 
-    First 2 bytes represents type of the file. (14+40+(94*3))
-    BM, 66, 42	
+    First 2 bytes represents type of the file.
+    ASCII:BM
+    Decimal: 66,77
+    Hexdecimal: 42,4D
 
 10. What’s the difference between bfSize and biSize?
     bfSize = Total size of the file in bytes
-    biSize = biSize is the size of the BITMAPINFOHEADER structure given in bytes (Ref:http://www.vb6.us/tutorials/handling-bitmaps-tutorial)
+    biSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + biSizeImage;
 
 11. What does it mean if biHeight is negative?
+    If biHeight is negative, then the bitmap is top-down with the orgine at upper left corner.
 
 12. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
 	biXPelsPerMeter  and biYPelsPerMeter 
 
 13. Why might fopen return NULL in copy.c:37?
-	When a error occured while opeing the speficied file with write permission
-
+	Error occurs when no write permission on the file/path mentioned
+	If the path specified is a directory (man errno.h)
+	
 14. Why is the third argument to fread always 1 in our code?
 	3rd argument(nmemb) stands for number of elements, each one of 'size' (second argument) bytes. Keeping the size as 1 will ensure we will read number of bytes read is equal to size.
 
@@ -57,6 +63,6 @@
 	Move the file pointer to the specified location.
 
 17. What is SEEK_CUR?
-	Get the cuurent position of the file pointer.
+	Get the current position of the file pointer.
 
 18. Whodunit?
