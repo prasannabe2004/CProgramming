@@ -18,25 +18,45 @@
 
 5.  What can someone like you do to ensure (with high probability) that files you delete cannot be recovered?
     1. Use tool to which can write Gutmann's pattern
+
 6.  What’s stdint.h?
     There are predefined(typedefed) types which are useful and more conveninent to use. Those typedefs are declred in stdint.h
+
 7.  What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
     These are easy to use because they are already defined ad part of stdint.h. The naming convention used in these typedefs cleary signify the nature of the value and size it supports.
+
 8.  How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
     Size of BYTE = 1
     Size of DWORD = 4
     Size of LONG = 4
     Size of WORD = 2
+
 9.  What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? 
-    First 2 bytes represents type of the file.
+    First 2 bytes represents type of the file. (14+40+(94*3))
     BM, 66, 42	
+
 10. What’s the difference between bfSize and biSize?
-    
-11. TODO
-12. TODO
-13. TODO
-14. TODO
-15. TODO
-16. TODO
-17. TODO
-18. TODO
+    bfSize = Total size of the file in bytes
+    biSize = biSize is the size of the BITMAPINFOHEADER structure given in bytes (Ref:http://www.vb6.us/tutorials/handling-bitmaps-tutorial)
+
+11. What does it mean if biHeight is negative?
+
+12. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+	biXPelsPerMeter  and biYPelsPerMeter 
+
+13. Why might fopen return NULL in copy.c:37?
+	When a error occured while opeing the speficied file with write permission
+
+14. Why is the third argument to fread always 1 in our code?
+	3rd argument(nmemb) stands for number of elements, each one of 'size' (second argument) bytes. Keeping the size as 1 will ensure we will read number of bytes read is equal to size.
+
+15. What value does copy.c:70 assign padding if bi.biWidth is 3?
+	3
+
+16. What does fseek do?
+	Move the file pointer to the specified location.
+
+17. What is SEEK_CUR?
+	Get the cuurent position of the file pointer.
+
+18. Whodunit?
