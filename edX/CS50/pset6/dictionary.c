@@ -8,6 +8,7 @@
  ***************************************************************************/
 
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "dictionary.h"
 
@@ -25,8 +26,23 @@ bool check(const char* word)
  */
 bool load(const char* dictionary)
 {
-    // TODO
-    return false;
+    FILE* inptr = fopen(dictionary, "r");
+    
+    if(inptr != NULL)
+    {
+        char buffer[46];
+        while(fscanf(inptr, "%s\n", buffer) != EOF)
+        {
+            printf("%s ", buffer);
+        }
+    }
+    else
+    {
+        return false;
+    }
+    printf("Bye\n");
+    fclose(inptr);
+    return true;
 }
 
 /**
