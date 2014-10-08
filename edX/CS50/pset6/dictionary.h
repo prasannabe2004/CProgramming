@@ -11,6 +11,12 @@
 #define DICTIONARY_H
 
 #include <stdbool.h>
+#include <strings.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#include "red_black_tree.h"
 
 // maximum length for a word
 // (e.g., pneumonoultramicroscopicsilicovolcanoconiosis)

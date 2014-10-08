@@ -13,6 +13,7 @@
 #include <sys/time.h>
 
 #include "dictionary.h"
+
 #undef calculate
 #undef getrusage
 
@@ -30,7 +31,7 @@ int main(int argc, char* argv[])
         printf("Usage: speller [dictionary] text\n");
         return 1;
     }
-
+    
     // structs for timing data
     struct rusage before, after;
 
@@ -44,7 +45,7 @@ int main(int argc, char* argv[])
     getrusage(RUSAGE_SELF, &before);
     bool loaded = load(dictionary);
     getrusage(RUSAGE_SELF, &after);
-
+    
     // abort if dictionary not loaded
     if (!loaded)
     {
