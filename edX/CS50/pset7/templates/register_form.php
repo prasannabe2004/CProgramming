@@ -17,5 +17,5 @@
     </fieldset>
 </form>
 <div>
-    or <a href="login.php">log in</a>
+    already has account <a href="login.php">Log in</a>
 </div>
