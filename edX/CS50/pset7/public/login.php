@@ -31,6 +31,10 @@
                 // redirect to portfolio
                 redirect("/");
             }
+            else
+            {
+                apologize("Password not matched");
+            }
         }
         else
         {
