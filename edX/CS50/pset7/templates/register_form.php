@@ -10,7 +10,6 @@
             <input name="confirmation" placeholder="Password confirmation" type="password"/>
         </div>
         <br>
-        </br>
         <div class="control-group">
             <button type="submit" class="btn">Create an account</button>
         </div>
