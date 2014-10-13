@@ -12,7 +12,7 @@
         <br>
         </br>
         <div class="control-group">
-            <button type="submit" class="btn">Register</button>
+            <button type="submit" class="btn">Create an account</button>
         </div>
     </fieldset>
 </form>
