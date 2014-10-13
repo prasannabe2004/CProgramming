@@ -9,11 +9,11 @@
         // validate submission
         if (empty($_POST["username"]))
         {
-            apologize("You must provide your username.");
+            apologize("Username cannot be empty.You must provide your username.");
         }
         else if (empty($_POST["password"]))
         {
-            apologize("You must provide your password.");
+            apologize("Password cannot be empty. You must provide your password.");
         }
         // query database for user
         $rows = query("SELECT * FROM users WHERE username = ?", $_POST["username"]);
