@@ -29,11 +29,11 @@
                 $_SESSION["id"] = $row["id"];
 
                 // redirect to portfolio
-                redirect("/");
+                redirect("/index.php");
             }
             else
             {
-                apologize("Password not matched");
+                apologize("Sorry! Password not matched");
             }
         }
         else
