@@ -9,6 +9,8 @@
          <div class="control-group">
             <input name="confirmation" placeholder="Password confirmation" type="password"/>
         </div>
+        <br>
+        </br>
         <div class="control-group">
             <button type="submit" class="btn">Register</button>
         </div>
