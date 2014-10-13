@@ -6,8 +6,7 @@
         <div class="control-group">
             <input name="password" placeholder="Password" type="password"/>
         </div>
-        <br>
-        </br>
+        <br\>
         <div class="control-group">
             <button type="submit" class="btn">Log In</button>
         </div>
