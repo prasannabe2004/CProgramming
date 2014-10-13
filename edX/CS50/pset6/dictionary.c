@@ -9,56 +9,176 @@
 
 #include "dictionary.h"
 
-rb_red_blk_tree* tree = NULL;
+trie_t trie;
 unsigned int words_in_dict = 0 ;
 
-int StrComp(const void* a,const void* b) 
+/** This function finds the index for the  given character. It returns 26 for apostrope..
+ * @param[in] ch Character to be indexed
+ * @author Prasanna
+ * @date 10/10/2014
+ * @see trie.h
+ **/
+
+int char2Index(char ch)
 {
-    /* Compare the Domain name and return the value to RB Tree. */
-    if(strcasecmp((char *)a,(char *)b) > 0 ) 
+    if(isalpha(ch))
     {
-        return(1); /* String "a" is greater than string "b" */
+        // We got an alphabet
+        if(islower(ch))
+        {
+            return (int)ch - (int)'a';
+        }
+        else
+        {
+            return (int)ch - (int)'A'; 
+        }
     }
-    else if(strcasecmp((char *)a,(char *)b) < 0)
+    else
     {
-        return (-1); /* String "b" is greater than string "a" */
+        // This space is for apostrope.
+        return 26;
     }
-    /* Both the strings are equal. */
-    return(0);
+    return ch;
 }
 
-void InfoPrint(void* a) 
+/** This function deletes a node from the trie
+ * @author Prasanna
+ * @date 10/10/2014
+ * @see trie.h
+ **/
+void deleteNode(node_t* ptr)
 {
-    rb_red_blk_node* newNode = (rb_red_blk_node*)a;
-    if(newNode)
-        printf("%s->", (char *)newNode->key);
+    for(int i=0;i < ALPHABET_SIZE;i++)
+    {
+        if(ptr->children[i] != NULL)
+        {
+            deleteNode(ptr->children[i]);
+            ptr->children[i] = NULL;
+        }
+    }
+    free(ptr);
 }
 
-void IntPrint(const void* a) 
+/** This function deletes the trie
+ * @author Prasanna
+ * @date 10/10/2014
+ * @see trie.h
+ **/
+void deleteTrie(trie_t* ptr)
 {
-    printf("%s",(char*)a);
+    if(ptr)
+    {
+        if(ptr->root)
+        {
+            deleteNode(ptr->root);
+        }
+    }
+    //free(ptr);
 }
 
-void IntDest(void* a) 
+/** Allocate memory for a new node
+ * @author Prasanna
+ * @date 10/10/2014
+ * @see trie.h
+ **/
+node_t *newNode(void)
 {
-    char* key = (char*)a;
-    if(key)
-        free(key);
+    node_t *pNode = NULL;
+ 
+    pNode = (node_t *)malloc(sizeof(node_t));
+ 
+    if( pNode )
+    {
+        int i;
+ 
+        pNode->value = 0;
+        // Initialize all the children to NULL
+        for(i = 0; i < ALPHABET_SIZE; i++)
+        {
+            pNode->children[i] = NULL;
+        }
+    }
+ 
+    return pNode;
 }
-
-void InfoDest(void *a)
+ 
+/** This function initialize the trie.
+ * @author Prasanna
+ * @date 10/10/2014
+ * @see trie.h
+ **/
+void initialize(trie_t *pRoot)
 {
-    ;
+    pRoot->root = newNode();
+    pRoot->count = 0;
 }
+ 
+/** This function inserts a new node into the trie.
+ * @author Prasanna
+ * @date 10/10/2014
+ * @see trie.h
+ **/
+void insert(trie_t *pRoot, char* key)
+{
+    int level;
+    int length = strlen(key);
+    int index = -1 ;
+    node_t *ptr;
+ 
+    pRoot->count++;
+    ptr = pRoot->root;
+ 
+    for( level = 0; level < length; level++ )
+    {
+        index = char2Index(key[level]);
+        if( !ptr->children[index] )
+        {
+            ptr->children[index] = newNode();
+        }
+ 
+        ptr = ptr->children[index];
+    }
+    ptr->value = pRoot->count;
+}
+ 
+/** This function queries the key in trie.
+ * @author Prasanna
+ * @date 10/10/2014
+ * @see trie.h
+ **/
+int query(trie_t *pRoot, const char* key)
+{
+    int level;
+    int length = strlen(key);
 
+    int index = -1 ;
+    node_t *ptr;
+ 
+    ptr = pRoot->root;
+    
+    for( level = 0; level < length; level++ )
+    {
+        index = char2Index(key[level]);
+        if( !ptr->children[index] )
+        { 
+            // reached the end, still not found
+            return 0;
+        }
+        ptr = ptr->children[index];
+    }
+
+    if(ptr != NULL && ptr->value != 0)
+        return 1;
+    else
+        return 0;
+}
 
 /**
  * Returns true if word is in dictionary else false.
  */
 bool check(const char* word)
 {
-    rb_red_blk_node* newNode;
-    if ( ( newNode = RBExactQuery(tree, (char *)word) ) ) 
+    if (query(&trie, word)) 
     { 
         return true;
     } 
@@ -73,20 +193,17 @@ bool check(const char* word)
  */
 bool load(const char* dictionary)
 {
-    if(tree == NULL)
-        tree = RBTreeCreate(StrComp,IntDest,InfoDest,IntPrint,InfoPrint);
+
+    initialize(&trie);
+    char buffer[LENGTH+1];
     
     FILE* inptr = fopen(dictionary, "r");
-    char* newString;
     
     if(inptr != NULL)
-    {
-        char buffer[46];
+    {   
         while(fscanf(inptr, "%s\n", buffer) != EOF)
         {
-            newString=(char*) malloc(strlen(buffer)+1);
-            strcpy(newString,buffer);
-            RBTreeInsert(tree,newString,0);
+            insert(&trie, buffer);
             words_in_dict = words_in_dict + 1;
         }
     }
@@ -111,6 +228,6 @@ unsigned int size(void)
  */
 bool unload(void)
 {
-    RBTreeDestroy(tree);
+    deleteTrie(&trie);
     return true;
 }

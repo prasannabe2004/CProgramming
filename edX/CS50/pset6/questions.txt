@@ -1,22 +1,32 @@
 0.  What is pneumonoultramicroscopicsilicovolcanoconiosis?
 	It is the longest word in the English language published in a dictionary, the Oxford English Dictionary. 
+
 1.  According to its man page, what does getrusage do?
 	getrusage() returns current resource usages of the current process which includes user time, system time, page faults. 
+
 2.  Per that same man page, how many members are in a variable of type struct rusage?
 	16 members in struct rusage.
+
 3.  Why do you think we pass before and after by reference (instead of by value) to calculate, even though we’re not changing their contents?
 	getrusage function returns pointer to struct rusage.
+
 4.  Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, convince us that you indeed understand how that function’s for loop works.?
 	Read character by charter from text file and construct a word. This word is passed to check() function to see if it exists in dictonary or not. 
+
 5.  Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
 	fscanf reads the entire line one by one which is helpful in case of dictionary like files. But for text like files where a line can grow in multiple lines. In that case fgetc is much easier to parse and validate.
+
 6.  Why do you think we declared the parameters for check and load as const?
-	Within check and load fucntions, there should not be any attempt to change this parameters. Whatever passed should be take as is.
+	Within check and load fucntions, there should not be any attempt to change this parameter. Whatever passed should be take as is.
+
 7.  What data structure(s) did you use to implement your spell-checker? Be sure not to leave your answer at just "hash table," "trie," or the like. Expound on what’s inside each of your "nodes."
-	I use Red Black tree. However i used the base source from http://web.mit.edu/~emin/www.old/source_code/red_black_tree/index.html. Customized to take strings instead of integers. Node has a key, info, pointer to left node, pointer to right node and a pointer to its parent. 
+	I use Trie. Unlike my previous code, I implemented trie for this problem set. Node has a array of pointers to store all the alphabets and a extra space for '. 
+
 8.  How slow was your code the first time you got it working correctly?
-	I implemented first with linked list data strutures. It was pretty slow. And then re-designed to red black tree. This is was pretty fast.
+	I implemented first with linked list data strutures. It was pretty slow. And then re-designed to red black tree. This is was pretty fast. Now I implemented my own trie data structure. This is much more faster than the previous 2.
+
 9.  What kinds of changes, if any, did you make to your code over the course of the week in order to improve its performance?
-	I changed the data structure from linked list to red-black tree.
+	I changed the data structure from linked list to red-black tree. Then changed to trie.
+
 10. Do you feel that your code has any bottlenecks that you were not able to chip away at?
 	Not really. But may be I can reduce the load time much when compared to staffs solution.
