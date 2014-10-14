@@ -11,5 +11,5 @@
         $positions[] = $stock;
     }
     $users = query("SELECT * FROM users WHERE id = ?", $_SESSION["id"]);
-    render("portfolio.php", ["title" => "Portfolio", "portfolio" => $positions, "users" => $users]);
+    render("portfolio.php", ["title" => "Portfolio", "position" => $positions, "users" => $users]);
 ?>
