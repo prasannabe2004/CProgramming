@@ -19,7 +19,7 @@
             $row = $rows[0];
             if (crypt($_POST["password"], $row["hash"]) == $row["hash"])
             {
-                $_SESSION["id"] = $row["id"];
+                $_SESSION["username"] = $row["username"];
                 redirect("/index.php");
             }
             else
