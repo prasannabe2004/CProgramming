@@ -34,7 +34,9 @@
         
         // query to check how much cash user has
         $cash =	query("SELECT cash FROM users WHERE id = ?", $_SESSION["id"]);	
-        
+
+        dump($cash);
+
         // if user's cash < total cost (user can't afford purchase)
         if ($cash < $cost)
         {
