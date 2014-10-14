@@ -1,12 +1,6 @@
-<links class="nav nav-pills">
-    <li><a href="index.php">Portfolio</a></li>
-    <li><a href="quote.php">Quote</a></li>
-    <li><a href="buy.php">Buy Shares</a></li>
-    <li><a href="sell.php">Sell Shares</a></li>
-    <li><a href="history.php">History</a></li>
-    <li><a href="deposit.php">Deposit Funds</a></li>    
-    <li><a href="logout.php"><strong>Log Out</a></li>
-</links>
+<?php
+include 'common.php';
+?>
 <table class="table table-striped">
     <thead>
         <tr>
