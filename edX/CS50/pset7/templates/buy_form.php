@@ -11,6 +11,7 @@ include 'common.php';
             <input class="input-small" name="shares" placeholder="Shares" type="text"/>
         </div>
         <div class="control-group">
+            <br/>
             <button type="submit" class="btn">Buy</button>
         </div>
     </fieldset>

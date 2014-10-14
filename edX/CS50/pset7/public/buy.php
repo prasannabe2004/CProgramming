@@ -25,26 +25,20 @@
         }
 
         $transaction = 'BUY';
-        
-        // look up stock's price
+
         $stock = lookup($_POST["symbol"]);
-        
-        // calculate total cost (stock's price * shares)
+
         $cost = $stock["price"] * $_POST["shares"];
-        
-        // query to check how much cash user has
+
         $cash =	query("SELECT cash FROM users WHERE id = ?", $_SESSION["id"]);	
 
-        // if user's cash < total cost (user can't afford purchase)
+        // thanks to dump to figure out the comparision
         if ($cash[0]["cash"] < $cost)
         {
-            // apologize
             apologize("You can't afford this purchase.");
         }
-        // else if user's cash >= total price (user can afford purchase)
         else
         {
-            // capitalize symbol (works)
             $_POST["symbol"] = strtoupper($_POST["symbol"]);
                          
             // add stock to their portfolio or update shares
