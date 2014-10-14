@@ -6,10 +6,16 @@
 	foreach ($rows as $row)	
     {
         $stock = lookup($row["symbol"]);
-        $stock["shares"] = $row["shares"];
-        $stock["total"] = $row["shares"] * $stock["price"];
-        $positions[] = $stock;
+        if($stock !== false)
+        {
+            $positions[] = [
+                "name" => $stock["name"],
+                "price" => $stock["price"],
+                "shares" => $row["shares"],
+                "symbol" => $row["symbol"]
+            ];
+        }
     }
     $users = query("SELECT * FROM users WHERE id = ?", $_SESSION["id"]);
-    render("portfolio.php", ["title" => "Portfolio", "position" => $positions, "users" => $users]);
+    render("portfolio.php", ["title" => "Portfolio", "positions" => $positions, "users" => $users]);
 ?>
