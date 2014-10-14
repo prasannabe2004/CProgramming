@@ -13,7 +13,7 @@
                 "price" => $stock["price"],
                 "shares" => $row["shares"],
                 "symbol" => $row["symbol"],
-                $stock["total"] = $row["shares"] * $stock["price"],
+                "total" => $row["shares"] * $stock["price"],
             ];
         }
     }
