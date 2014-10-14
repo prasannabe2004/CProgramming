@@ -13,10 +13,13 @@
         {
             apologize("Enter your password");
         }
+        // find the username from DB
         $rows = query("SELECT * FROM users WHERE username = ?", $_POST["username"]);
-        if (count($rows) == 1)
+        if (count($rows) === 1)
         {
+            // User found from the DB
             $row = $rows[0];
+            //Check the password matches
             if (crypt($_POST["password"], $row["hash"]) == $row["hash"])
             {
                 $_SESSION["id"] = $row["id"];
@@ -29,6 +32,7 @@
         }
         else
         {
+            // Zero user found from DB
             apologize("Invalid username and/or password.");
         }
     }

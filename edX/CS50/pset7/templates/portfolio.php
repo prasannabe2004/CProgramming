@@ -36,7 +36,6 @@
         <td>$<?=number_format($users[0]["cash"], 2)?></td>
     </tr>
     </tbody>
-
 </table>
 
 <script>
