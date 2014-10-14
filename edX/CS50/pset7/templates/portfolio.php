@@ -1,33 +1,33 @@
 <?php
 include 'common.php';
 ?>
-<table class="table table-striped">
+<table class="table table-striped" border=2 width="75%"cellpadding=4>
     <thead>
-        <tr>
-            <th>Symbol</th>
-            <th>Name</th>
-            <th>Shares</th>
-            <th>Price</th>
-            <th>Total</th>
-        </tr>
+    <tr>
+        <th colspan="1" BGCOLOR="#99CCFF">Symbol</th>
+        <th colspan="1" BGCOLOR="#99CCFF">Name</th>
+        <th colspan="1" BGCOLOR="#99CCFF">Shares</th>
+        <th colspan="1" BGCOLOR="#99CCFF">Price</th>
+        <th colspan="1" BGCOLOR="#99CCFF">Total</th>
+    </tr>
     </thead>
     <tbody>
     <?php
-	    foreach ($positions as $position)
-        {   
-            echo("<tr>");
-            echo("<td>" . $position["symbol"] . "</td>");
-            echo("<td>" . $position["name"] . "</td>");
-            echo("<td>" . $position["shares"] . "</td>");
-            echo("<td>$" . number_format($position["price"], 2) . "</td>");
-            echo("<td>$" . number_format($position["total"], 2) . "</td>");
-            echo("</tr>");
-        }
+    foreach ($positions as $position)
+    {
+        echo("<tr>");
+        echo("<td>" . $position["symbol"] . "</td>");
+        echo("<td>" . $position["name"] . "</td>");
+        echo("<td>" . $position["shares"] . "</td>");
+        echo("<td>$" . number_format($position["price"], 2) . "</td>");
+        echo("<td>$" . number_format($position["total"], 2) . "</td>");
+        echo("</tr>");
+    }
     ?>
     <tr>
         <br/>
-        <td colspan="4">CASH</td>
-        <td>$<?=number_format($users[0]["cash"], 2)?></td>
+        <td colspan="4" BGCOLOR="#99CC00">Balance Cash</td>
+        <td colspan="4" BGCOLOR="#99CC00">$<?=number_format($users[0]["cash"], 2)?></td>
     </tr>
     </tbody>
 </table>
