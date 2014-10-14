@@ -9,25 +9,21 @@
         // if symbol or shares empty
         if (empty($_POST["symbol"]) || empty($_POST["shares"]))
         {
-            // apologize
             apologize("You must enter a stock symbol and quantity of shares to buy.");
         }
         
         // if symbol is invalid
         if (lookup($_POST["symbol"]) === false)
         {
-            // apologize
             apologize("Invalid stock symbol.");
         }
         
         // if shares is invalid (not a whole positive integer)
         if (preg_match("/^\d+$/", $_POST["shares"]) == false)
         {
-            // apologize
             apologize("You must enter a whole, positive integer.");
         }
-        
-        // set transaction type
+
         $transaction = 'BUY';
         
         // look up stock's price
@@ -44,17 +40,16 @@
         {
             // apologize
             apologize("You can't afford this purchase.");
-        }         
-        
+        }
         // else if user's cash >= total price (user can afford purchase)
         else
         {
+            11111
             // capitalize symbol (works)
             $_POST["symbol"] = strtoupper($_POST["symbol"]);
                          
             // add stock to their portfolio or update shares
-            query("INSERT INTO portfolio (id, symbol, shares) VALUES(?, ?, ?) 
-                ON DUPLICATE KEY UPDATE shares = shares + VALUES(shares)", $_SESSION["id"], $_POST["symbol"], $_POST["shares"]);
+            query("INSERT INTO portfolio (id, symbol, shares) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE shares = shares + VALUES(shares)", $_SESSION["id"], $_POST["symbol"], $_POST["shares"]);
             
             // subtract total price from their cash
             query("UPDATE users SET cash = cash - ? WHERE id = ?", $cost, $_SESSION["id"]);
@@ -66,11 +61,8 @@
             redirect("/");    
         }
     }
-    
-    // if form hasn't been submitted
     else
     {
-        // render buy form
         render("buy_form.php", ["title" => "Buy Form"]);
     }
     
