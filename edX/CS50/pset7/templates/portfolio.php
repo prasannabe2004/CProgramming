@@ -5,7 +5,7 @@
     <li><a href="sell.php">Sell Shares</a></li>
     <li><a href="history.php">History</a></li>
     <li><a href="deposit.php">Deposit Funds</a></li>    
-    <li><a href="logout.php"><strong>Log Out</strong></a></li>
+    <li><a href="logout.php"><strong>Log Out</a></li>
 </ul>
 <table class="table table-striped">
 
@@ -15,7 +15,7 @@
             <th>Name</th>
             <th>Shares</th>
             <th>Price</th>
-            <th>TOTAL</th>
+            <th>Total</th>
         </tr>
     </thead>
 
