@@ -23,7 +23,14 @@ include 'common.php';
         echo("<td>$" . number_format($position["total"], 2) . "</td>");
         echo("</tr>");
     }
+    foreach ($positions as $position)
+    {
+        $total = 0
+        $total = $totla + $position["price"];
+        dump($total);
+    }
     ?>
+    </tr>
     <tr>
         <br/>
         <td colspan="4" BGCOLOR="#99CC00">Balance Cash</td>
