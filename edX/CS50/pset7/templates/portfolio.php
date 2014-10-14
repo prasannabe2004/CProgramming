@@ -23,9 +23,9 @@ include 'common.php';
         echo("<td>$" . number_format($position["total"], 2) . "</td>");
         echo("</tr>");
     }
+    $total = 0;
     foreach ($positions as $position)
     {
-        $total = 0
         $total = $totla + $position["price"];
         dump($total);
     }
