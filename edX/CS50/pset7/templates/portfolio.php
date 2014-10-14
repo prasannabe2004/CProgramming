@@ -1,4 +1,4 @@
-<ul class="nav nav-pills">
+<links class="nav nav-pills">
     <li><a href="index.php">Portfolio</a></li>
     <li><a href="quote.php">Quote</a></li>
     <li><a href="buy.php">Buy Shares</a></li>
@@ -6,9 +6,8 @@
     <li><a href="history.php">History</a></li>
     <li><a href="deposit.php">Deposit Funds</a></li>    
     <li><a href="logout.php"><strong>Log Out</a></li>
-</ul>
+</links>
 <table class="table table-striped">
-
     <thead>
         <tr>
             <th>Symbol</th>
@@ -18,7 +17,6 @@
             <th>Total</th>
         </tr>
     </thead>
-
     <tbody>
     <?php
 	    foreach ($portfolio as $row)	
@@ -37,7 +35,6 @@
         <td colspan="4">CASH</td>
         <td>$<?=number_format($users[0]["cash"], 2)?></td>
     </tr>
-
     </tbody>
 
 </table>
