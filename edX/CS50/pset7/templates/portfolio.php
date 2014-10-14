@@ -33,7 +33,7 @@ include 'common.php';
     </tr>
     <tr>
         <br/>
-        <td colspan="4" BGCOLOR="#99CC00">Total</td>
+        <td colspan="4" BGCOLOR="#99CC00">Total Spent</td>
         <td colspan="4" BGCOLOR="#99CC00">$<?=number_format($total, 2)?></td>
     </tr>
     <tr>
