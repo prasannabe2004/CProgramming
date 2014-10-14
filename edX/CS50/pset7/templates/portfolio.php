@@ -13,7 +13,7 @@ include 'common.php';
     </thead>
     <tbody>
     <?php
-	    foreach ($portfolio as $position)
+	    foreach ($positions as $position)
         {   
             echo("<tr>");
             echo("<td>" . $position["symbol"] . "</td>");
