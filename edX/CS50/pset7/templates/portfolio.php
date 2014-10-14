@@ -19,8 +19,8 @@ include 'common.php';
             echo("<td>" . $position["symbol"] . "</td>");
             echo("<td>" . $position["name"] . "</td>");
             echo("<td>" . $position["shares"] . "</td>");
-            echo("<td>" . $number_format($position["price"], 2) . "</td>");
-            echo("<td>" . $number_format($position["total"], 2) . "</td>");
+            echo("<td>$" . $number_format($position["price"], 2) . "</td>");
+            echo("<td>$" . $number_format($position["total"], 2) . "</td>");
             echo("</tr>");
         }
     ?>
