@@ -35,6 +35,8 @@ include 'common.php';
         <br/>
         <td colspan="4" BGCOLOR="#99CC00">Total</td>
         <td colspan="4" BGCOLOR="#99CC00">$<?=number_format($total, 2)?></td>
+    </tr>
+    <tr>
         <td colspan="4" BGCOLOR="#99CC00">Balance Cash</td>
         <td colspan="4" BGCOLOR="#99CC00">$<?=number_format($users[0]["cash"], 2)?></td>
     </tr>
