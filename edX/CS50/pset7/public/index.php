@@ -10,6 +10,6 @@
         $stock["total"] = $row["shares"] * $stock["price"];
         $portfolio[] = $stock;
     }
-    $users = query("SELECT * FROM users WHERE id = ?", $_SESSION["id"]);
+    $users = query("SELECT * FROM users WHERE id = ?", $_SESSION["username"]);
     render("portfolio.php", ["title" => "Portfolio", "portfolio" => $portfolio, "users" => $users]);
 ?>
