@@ -32,8 +32,8 @@
             echo("</tr>");
         }
     ?>
-    <br/>
     <tr>
+        <br/>
         <td colspan="4">CASH</td>
         <td>$<?=number_format($users[0]["cash"], 2)?></td>
     </tr>
