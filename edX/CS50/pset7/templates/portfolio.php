@@ -13,14 +13,14 @@ include 'common.php';
     </thead>
     <tbody>
     <?php
-	    foreach ($portfolio as $row)	
+	    foreach ($portfolio as $position)
         {   
             echo("<tr>");
-            echo("<td>" . $row["symbol"] . "</td>");
-            echo("<td>" . $row["name"] . "</td>");
-            echo("<td>" . $row["shares"] . "</td>");
-            echo("<td>$" . number_format($row["price"], 2) . "</td>");
-            echo("<td>$" . number_format($row["total"], 2) . "</td>");
+            echo("<td>" . $position["symbol"] . "</td>");
+            echo("<td>" . $position["name"] . "</td>");
+            echo("<td>" . $position["shares"] . "</td>");
+            echo("<td>$" . number_format($position["price"], 2) . "</td>");
+            echo("<td>$" . number_format($position["total"], 2) . "</td>");
             echo("</tr>");
         }
     ?>
