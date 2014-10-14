@@ -44,7 +44,6 @@
         // else if user's cash >= total price (user can afford purchase)
         else
         {
-            11111
             // capitalize symbol (works)
             $_POST["symbol"] = strtoupper($_POST["symbol"]);
                          
