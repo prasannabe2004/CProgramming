@@ -32,7 +32,7 @@
             echo("</tr>");
         }
     ?>
-
+    <br/>
     <tr>
         <td colspan="4">CASH</td>
         <td>$<?=number_format($users[0]["cash"], 2)?></td>
