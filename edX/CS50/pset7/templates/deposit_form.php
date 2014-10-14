@@ -8,6 +8,7 @@ include 'common.php';
             <input class="input-medium" name="deposit" placeholder="Deposit Amount" type="text"/>
         </div>
         <div class="control-group">
+            <br/>
             <button type="submit" class="btn">Deposit</button>
         </div>
     </fieldset>
