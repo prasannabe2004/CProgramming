@@ -35,7 +35,7 @@
         // thanks to dump to figure out the comparision
         if ($cash[0]["cash"] < $cost)
         {
-            apologize("You can't afford this purchase.");
+            apologize("No enough cash to buy this share at this time. Please deposit cash.");
         }
         else
         {

@@ -6,5 +6,4 @@
     <li><a href="history.php">History</a></li>
     <li><a href="deposit.php">Deposit Cash</a></li>
     <li><a href="logout.php"><strong>Log Out</strong></a></li>
-    <user> Login as Prasanna </user>user>
 </ul>
