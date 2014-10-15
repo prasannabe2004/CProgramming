@@ -33,12 +33,12 @@ include 'common.php';
     </tr>
     <tr>
         <br/>
-        <td colspan="4" BGCOLOR="#99CC00">Total Spent</td>
-        <td colspan="4" BGCOLOR="#99CC00">$<?=number_format($total, 2)?></td>
+        <td colspan="4">Grand Total</td>
+        <td colspan="4">$<?=number_format($total, 2)?></td>
     </tr>
     <tr>
-        <td colspan="4" BGCOLOR="#99CC00">Balance Cash</td>
-        <td colspan="4" BGCOLOR="#99CC00">$<?=number_format($users[0]["cash"], 2)?></td>
+        <td colspan="4">Balance Cash</td>
+        <td colspan="4">$<?=number_format($users[0]["cash"], 2)?></td>
     </tr>
     </tbody>
 </table>
