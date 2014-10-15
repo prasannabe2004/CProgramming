@@ -1,14 +1,14 @@
 <?php
 include 'common.php';
 ?>
-<table class="table table-striped" border=2 width="75%"cellpadding=4>
+<table class="table table-striped" cellpadding=4>
     <thead>
     <tr>
-        <th colspan="1" BGCOLOR="#99CCFF">Symbol</th>
-        <th colspan="1" BGCOLOR="#99CCFF">Name</th>
-        <th colspan="1" BGCOLOR="#99CCFF">Shares</th>
-        <th colspan="1" BGCOLOR="#99CCFF">Price</th>
-        <th colspan="1" BGCOLOR="#99CCFF">Total</th>
+        <th colspan="1">Symbol</th>
+        <th colspan="1">Name</th>
+        <th colspan="1">Shares</th>
+        <th colspan="1">Price</th>
+        <th colspan="1">Total</th>
     </tr>
     </thead>
     <tbody>
