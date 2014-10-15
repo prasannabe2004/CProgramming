@@ -34,14 +34,14 @@
 }
 table, th,td
 {
-    border: 1px solid black;
+    border: 2px solid black;
 }
 th {
-    background-color: sliver;
+    background-color: lime;
     color: red;
     text-align: center;
 }
 td {
-    background-color: white;
+    background-color: yellow;
     color: red;
 }
