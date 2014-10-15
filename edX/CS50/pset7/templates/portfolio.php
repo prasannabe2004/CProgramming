@@ -4,17 +4,19 @@ include 'common.php';
 <table class="table table-striped">
     <thead>
     <tr>
-        <th colspan="1">Symbol</th>
-        <th colspan="1">Name</th>
-        <th colspan="1">Shares</th>
-        <th colspan="1">Price</th>
-        <th colspan="1">Total</th>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Shares</th>
+        <th>Price</th>
+        <th>Total</th>
     </tr>
     </thead>
     <tbody>
     <?php
+    $total = 0;
     foreach ($positions as $position)
     {
+        $total = $total + ( $position["shares"] * $position["price"]);
         echo("<tr>");
         echo("<td>" . $position["symbol"] . "</td>");
         echo("<td>" . $position["name"] . "</td>");
@@ -23,20 +25,12 @@ include 'common.php';
         echo("<td>$" . number_format($position["total"], 2) . "</td>");
         echo("</tr>");
     }
-    $total = 0;
-    foreach ($positions as $position)
-    {
-        $total = $total + ( $position["shares"] * $position["price"]);
-    }
+    $total = number_format($total, 2);
+    echo("<tr>");
+    echo("<td colspan=4>" . "Grand Total" . "</td>");
+    echo("<td colspan=1>" . $total . "</td>");
+    echo("</tr>");
     ?>
-    <tr>
-        <td colspan="4">Grand Total</td>
-        <td colspan="4">$<?=number_format($total, 2)?></td>
-    </tr>
-    <tr>
-        <td colspan="4">Balance Cash</td>
-        <td colspan="4">$<?=number_format($users[0]["cash"], 2)?></td>
-    </tr>
     </tbody>
 </table>
 
