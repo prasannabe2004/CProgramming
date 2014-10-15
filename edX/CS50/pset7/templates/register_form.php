@@ -6,8 +6,11 @@
         <div class="control-group">
             <input name="password" placeholder="Password" type="password"/>
         </div>
-         <div class="control-group">
-            <input name="confirmation" placeholder="Password confirmation" type="password"/>
+        <div class="control-group">
+            <input name="confirmation" placeholder="Confirm Password" type="password"/>
+        </div>
+        <div class="control-group">
+            <input name="email address" placeholder="Email Address" type="email"/>
         </div>
         <br>
         <div class="control-group">
