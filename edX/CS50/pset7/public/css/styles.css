@@ -37,7 +37,7 @@ table, th,td
     border: 1px solid black;
 }
 th {
-    background-color: yellow;
+    background-color: sliver;
     color: red;
     text-align: center;
 }
