@@ -27,7 +27,6 @@ include 'common.php';
     foreach ($positions as $position)
     {
         $total = $total + ( $position["shares"] * $position["price"]);
-        //dump($total);
     }
     ?>
     </tr>
