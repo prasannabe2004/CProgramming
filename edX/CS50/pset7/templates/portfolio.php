@@ -1,7 +1,7 @@
 <?php
 include 'common.php';
 ?>
-<table class="table table-striped" cellpadding=4>
+<table class="table table-striped">
     <thead>
     <tr>
         <th colspan="1">Symbol</th>
@@ -29,9 +29,7 @@ include 'common.php';
         $total = $total + ( $position["shares"] * $position["price"]);
     }
     ?>
-    </tr>
     <tr>
-        <br/>
         <td colspan="4">Grand Total</td>
         <td colspan="4">$<?=number_format($total, 2)?></td>
     </tr>
