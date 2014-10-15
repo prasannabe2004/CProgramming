@@ -30,6 +30,8 @@ include 'common.php';
     echo("<tr>");
     echo("<td colspan=4>" . "Grand Total" . "</td>");
     echo("<td colspan=1>" . $total . "</td>");
+    echo("</tr>");
+    echo("<tr>");
     echo("<td colspan=4>" . "Balance Cash" . "</td>");
     echo("<td colspan=1>" . $balance . "</td>");
     echo("</tr>");
