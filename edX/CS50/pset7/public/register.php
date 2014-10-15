@@ -14,7 +14,7 @@
         {
             apologize("Your password and confirmation do not match");
         }
-        $result = query("INSERT INTO users (username, hash, cash) VALUES(?, ?, 10000.00)", $_POST["username"], crypt($_POST["password"]));
+        $result = query("INSERT INTO users (username, hash, cash, email) VALUES(?, ?, 10000.00, ?)", $_POST["username"], crypt($_POST["password"]),$_POST["email"]);
         if($result === false)
         {
             apologize("Username already exists");

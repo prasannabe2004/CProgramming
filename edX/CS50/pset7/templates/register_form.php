@@ -10,7 +10,7 @@
             <input name="confirmation" placeholder="Confirm Password" type="password"/>
         </div>
         <div class="control-group">
-            <input name="email address" placeholder="Email Address" type="email"/>
+            <input name="email" placeholder="Email Address" type="email"/>
         </div>
         <br>
         <div class="control-group">
