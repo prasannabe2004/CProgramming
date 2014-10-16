@@ -6,7 +6,6 @@ include 'common.php';
     <fieldset>
         <div class="control-group">
             <select name="symbol">
-                <option value=''></option>
                 <?php               
 	                foreach ($stocks as $symbol)	
                     {   
