@@ -25,3 +25,4 @@ include 'common.php';
         }
     ?>
     </tbody>
+</table>
