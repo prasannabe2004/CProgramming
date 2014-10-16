@@ -24,3 +24,4 @@ include 'common.php';
             echo("</tr>");
         }
     ?>
+    </tbody>
