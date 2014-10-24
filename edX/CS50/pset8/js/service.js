@@ -271,6 +271,17 @@ function load()
     google.earth.createInstance("earth", initCB, failureCB);
 }
 
+function getAvailableSeats()
+{
+    for (var j = 0; j < shuttle.seats.length; j++)
+    {
+        // if a seat is empty, fill it.
+        if (shuttle.seats[j] == null) {
+            return j
+        }
+    }
+    return 0;
+}
 /**
  * Picks up nearby passengers.
  */
@@ -281,63 +292,63 @@ function pickup()
     var check = 0;
     for (var i in PASSENGERS)
     {
-// skip any passengers that are no longer
-// on the map since they have already been
-// picked up.
+        // skip any passengers that are no longer
+        // on the map since they have already been
+        // picked up.
         if(PASSENGERS[i].placemark != null)
         {
-// figure out each person's distance from the shuttle
+            // figure out each person's distance from the shuttle
             lat = PASSENGERS[i].placemark.getGeometry().getLatitude();
             long = PASSENGERS[i].placemark.getGeometry().getLongitude();
             var dis = shuttle.distance(lat, long);
-// make sure person is close enough
+            // make sure person is close enough
             if (dis < 15 )
             {
-// set check to 1 to indicate a person was picked up
-                check1 = 1;
-// ignore freshman
-                if (PASSENGERS[i].house in HOUSES == false)
+                // set check to 1 to indicate a person was picked up
+                check = 1;
+                // ignore freshman
+                //if (PASSENGERS[i].house in HOUSES == false)
+                //{
+                    //$("#announcements").html("Sorry no freshman allowed.");
+                    //break;
+                //}
+                // iterate over the length of the seats
+                var j = getAvailableSeats();
+                if(j != 0)
                 {
-                    $("#announcements").html("Sorry no freshman allowed.");
-                    break;
-                }
-// iterate over the length of the seats
-                for (var j = 0; j < shuttle.seats.length; j++)
-                {
-// initialize a variable to indicate later if seats are
-// full
+                    // initialize a variable to indicate later if seats are full
                     checkfull = 1;
-// if a seat is empty, fill it.
+                    // if a seat is empty, fill it.
                     if (shuttle.seats[j] == null)
                     {
-// indicate that the shuttle was not full.
+                        // indicate that the shuttle was not full.
                         checkfull = 0;
-// move the passenger to the seat and remake the seat map
+                        // move the passenger to the seat and remake the seat map
                         shuttle.seats[j] = PASSENGERS[i];
                         $("#announcements").html("Points: " + points);
                         chart();
-// remove the placemark and marker from the maps
+                        // remove the placemark and marker from the maps
                         var features = earth.getFeatures();
                         features.removeChild(PASSENGERS[i].placemark);
                         PASSENGERS[i].placemark = null;
                         PASSENGERS[i].marker.setMap(null);
                         PASSENGERS[i].marker = null;
-// reset the announcements to the default.
+                        // reset the announcements to the default.
                         break;
                     }
                 }
-// if the shuttle is full, announce that it is full.
+                // if the shuttle is full, announce that it is full.
                 if (checkfull == 1)
                 {
-                    $("#announcements").html("Sorry, we are out of room!");
+                    $("#announcements").html("No seats available!");
                 }
             }
         }
     }
-// if no one is in the shuttle's range, announce it.
+    // if no one is in the shuttle's range, announce it.
     if (check == 0)
     {
-        $("#announcements").html("No people close enough for pickup!");
+        $("#announcements").html("Nobody close to pickup!!!!");
     }
 }
 
