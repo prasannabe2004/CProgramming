@@ -4,7 +4,9 @@
  * Computer Science 50
  * Problem Set 8
  *
+ * Implements a shuttle service.
  */
+
 /**
  *
  * Additional Features: Speed up/Speed down (r/e keys),
@@ -72,18 +74,22 @@ $(window).load(function() {
     $(document.body).keydown(function(event) {
         return keystroke(event, true);
     });
+
     // listen for keyup anywhere in body
     $(document.body).keyup(function(event) {
         return keystroke(event, false);
     });
+
     // listen for click on Drop Off button
     $("#dropoff").click(function(event) {
         dropoff();
     });
+
     // listen for click on Pick Up button
     $("#pickup").click(function(event) {
         pickup();
     });
+
     // load application
     load();
 });
@@ -118,6 +124,7 @@ function chart()
  */
 function dropoff()
 {
+    //alert("TODO");
     // set up a variable to check if any houses are in range
     var dropcheck = 0;
     // iterate over the shuttle's seats
@@ -297,7 +304,7 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
-
+    //TODO
     // speed up with r, R
     else if (event.keyCode == 82 || event.keyCode == 114)
     {
@@ -313,7 +320,6 @@ function keystroke(event, state)
         $("#announcements").html("Current speed is: " + shuttle.velocity);
         return false;
     }
-
     return true;
 }
 
@@ -332,12 +338,14 @@ function load()
         zoom: 17,
         zoomControl: true
     });
+
     // prepare shuttle's icon for map
     bus = new google.maps.Marker({
         icon: "https://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/bus.png",
         map: map,
         title: "you are here"
     });
+
     // embed 3D Earth in DOM
     google.earth.createInstance("earth", initCB, failureCB);
 }
@@ -479,6 +487,7 @@ function populate()
             position: new google.maps.LatLng(building.lat, building.lng),
             title: PASSENGERS[i].name + " at " + building.name
         });
+
         // TODO: remember passenger's placemark and marker for pick-up's sake
         // Adds marker and placemarker objects to the PASSENGER global array
         // for each passenger
@@ -497,6 +506,7 @@ function viewchange()
     map.setCenter(latlng);
     bus.setPosition(latlng);
 }
+
 /**
  * Unloads Earth.
  */
