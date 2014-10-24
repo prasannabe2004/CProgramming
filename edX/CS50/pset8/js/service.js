@@ -271,83 +271,62 @@ function load()
     google.earth.createInstance("earth", initCB, failureCB);
 }
 
-function getAvailableSeats()
+function getAvailableSeat()
 {
-    for (var j = 0; j < shuttle.seats.length; j++)
-    {
-        // if a seat is empty, fill it.
-        if (shuttle.seats[j] == null)
-        {
-            alert("seat avaiable");
-            return j;
-        }
+    for (var i = 0; i < shuttle.seats.length; i++){
+        if (shuttle.seats[i] == null)
+            return i;
     }
-    alert("no seats");
-    return 0;
+    return -1;
 }
+
 /**
  * Picks up nearby passengers.
  */
 function pickup()
 {
-    // initialize a variable that will be used at the end
-// to indicate whether someone has been picked
-    var check = 0;
-    for (var i in PASSENGERS)
+    var doSomething = true;
+    var seat = getAvailableSeat();
+    if (seat == -1)
     {
-        // skip any passengers that are no longer
-        // on the map since they have already been
-        // picked up.
-        if(PASSENGERS[i].placemark != null)
+        announce("No Seats available!");
+        return;
+    }
+    var features = earth.getFeatures();
+    for (var i = 0; i < PASSENGERS.length; i++)
+    {
+        if (seat != -1)
         {
-            // figure out each person's distance from the shuttle
-            lat = PASSENGERS[i].placemark.getGeometry().getLatitude();
-            long = PASSENGERS[i].placemark.getGeometry().getLongitude();
+            var lat = PASSENGERS[i].placemark.getGeometry().getLatitude();
+            var long = PASSENGERS[i].placemark.getGeometry().getLongitude();
             var dis = shuttle.distance(lat, long);
-            // make sure person is close enough
-            if (dis < 15 )
+
+            if (dis < 15)
             {
-                // set check to 1 to indicate a person was picked up
-                check = 1;
-                // ignore freshman
-                //if (PASSENGERS[i].house in HOUSES == false)
-                //{
-                    //$("#announcements").html("Sorry no freshman allowed.");
-                    //break;
-                //}
-                // iterate over the length of the seats
-                var j = getAvailableSeats();
-                if(j != 0)
-                {
-                    // if a seat is empty, fill it.
-                    if (shuttle.seats[j] == null)
-                    {
-                        // move the passenger to the seat and remake the seat map
-                        shuttle.seats[j] = PASSENGERS[i];
-                        $("#announcements").html("Points: " + points);
-                        chart();
-                        // remove the placemark and marker from the maps
-                        var features = earth.getFeatures();
-                        features.removeChild(PASSENGERS[i].placemark);
-                        PASSENGERS[i].placemark = null;
-                        PASSENGERS[i].marker.setMap(null);
-                        PASSENGERS[i].marker = null;
-                        // reset the announcements to the default.
-                        break;
-                    }
-                }
-                else
-                {
-                    $("#announcements").html("No seats available!");
-                }
+                features.removeChild(PLACEMARKS[i]);
+                PLACEMARKS[i] = null;
+                MARKERS[i].setMap(null);
+                shuttle.seats[seat] = PASSENGERS[i];
+                doSomething = false;
+                break;
             }
         }
+        else
+        {
+            break;
+        }
+        seat = getAvailableSeat();
     }
-    // if no one is in the shuttle's range, announce it.
-    if (check == 0)
-    {
-        $("#announcements").html("Nobody close to pickup!!!!");
-    }
+    if (doSomething)
+        announce("Nobody is within 15 meters to pick!");
+    else
+        announce("");
+    chart();
+}
+function isFinished(){
+    if (PEOPLE == 0)
+        return true;;
+    return false;
 }
 
 /**
