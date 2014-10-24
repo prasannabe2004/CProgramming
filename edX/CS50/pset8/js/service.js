@@ -4,37 +4,45 @@
 * Computer Science 50
 * Problem Set 8
 *
-*Ankit Gupta
-*ankitgupta@college.harvard.edu
-*
-* Implements a shuttle service.
+*/
+/**
 *
 * Additional Features: Speed up/Speed down (r/e keys),
 * color coded seat map, point tracking (in announcements)
-*
 */
 // default height
 var HEIGHT = 0.8;
+
 // default latitude
 var LATITUDE = 42.3745615030193;
+
 // default longitude
 var LONGITUDE = -71.11803936751632;
+
 // default heading
 var HEADING = 1.757197490907891;
+
 // default number of seats
 var SEATS = 10;
+
 // default velocity
 var VELOCITY = 50;
+
 // global reference to shuttle's marker on 2D map
 var bus = null;
+
 // global reference to 3D Earth
 var earth = null;
+
 // global reference to 2D map
 var map = null;
+
 // global reference to shuttle
 var shuttle = null;
+
 // global points
 var points = 0;
+
 var COLOR =
 {
 "Adams House": {color: "#DF01A5"},
@@ -50,35 +58,40 @@ var COLOR =
 "Quincy House": {color: "#5B650F"},
 "Winthrop House": {color: "#DC270B"}
 };
+
 // load version 1 of the Google Earth API
 google.load("earth", "1");
+
 // load version 3 of the Google Maps API
 google.load("maps", "3", {other_params: "sensor=false"});
+
 // once the window has loaded
 $(window).load(function() {
-// listen for keydown anywhere in body
-$(document.body).keydown(function(event) {
-return keystroke(event, true);
-});
-// listen for keyup anywhere in body
-$(document.body).keyup(function(event) {
-return keystroke(event, false);
-});
-// listen for click on Drop Off button
-$("#dropoff").click(function(event) {
-dropoff();
-});
-// listen for click on Pick Up button
-$("#pickup").click(function(event) {
-pickup();
-});
-// load application
-load();
+
+    // listen for keydown anywhere in body
+    $(document.body).keydown(function(event) {
+        return keystroke(event, true);
+    });
+    // listen for keyup anywhere in body
+    $(document.body).keyup(function(event) {
+        return keystroke(event, false);
+    });
+    // listen for click on Drop Off button
+    $("#dropoff").click(function(event) {
+        dropoff();
+    });
+    // listen for click on Pick Up button
+    $("#pickup").click(function(event) {
+        pickup();
+    });
+    // load application
+    load();
 });
 // unload application
 $(window).unload(function() {
-unload();
+    unload();
 });
+
 /**
 * Renders seating chart.
 */
