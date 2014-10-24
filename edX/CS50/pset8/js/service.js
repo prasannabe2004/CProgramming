@@ -276,10 +276,12 @@ function getAvailableSeats()
     for (var j = 0; j < shuttle.seats.length; j++)
     {
         // if a seat is empty, fill it.
-        if (shuttle.seats[j] == null) {
-            return j
+        if (shuttle.seats[j] == null)
+        {
+            return j;
         }
     }
+    alert("no seats");
     return 0;
 }
 /**
