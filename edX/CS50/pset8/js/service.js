@@ -323,7 +323,7 @@ function pickup()
             if (dis < 15 )
             {
                 // set check to 1 to indicate a person was picked up
-                check1 = 1;
+                check = 1;
                 // ignore freshman
                 if (PASSENGERS[i].house in HOUSES == false)
                 {
