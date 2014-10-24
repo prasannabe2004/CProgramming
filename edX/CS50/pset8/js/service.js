@@ -316,13 +316,9 @@ function pickup()
                 var j = getAvailableSeats();
                 if(j != 0)
                 {
-                    // initialize a variable to indicate later if seats are full
-                    checkfull = 1;
                     // if a seat is empty, fill it.
                     if (shuttle.seats[j] == null)
                     {
-                        // indicate that the shuttle was not full.
-                        checkfull = 0;
                         // move the passenger to the seat and remake the seat map
                         shuttle.seats[j] = PASSENGERS[i];
                         $("#announcements").html("Points: " + points);
@@ -337,8 +333,7 @@ function pickup()
                         break;
                     }
                 }
-                // if the shuttle is full, announce that it is full.
-                if (checkfull == 1)
+                else
                 {
                     $("#announcements").html("No seats available!");
                 }
