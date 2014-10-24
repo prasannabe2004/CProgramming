@@ -278,6 +278,7 @@ function getAvailableSeats()
         // if a seat is empty, fill it.
         if (shuttle.seats[j] == null)
         {
+            alert("seat avaiable");
             return j;
         }
     }
