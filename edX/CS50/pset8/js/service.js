@@ -9,8 +9,12 @@
 
 /**
  *
- * Additional Features: Speed up/Speed down (r/e keys),
- * color coded seat map, point tracking (in announcements)
+ * Additional Features:
+ *
+ * Speed up/Speed down (r/e keys)
+ * Color coded seat map
+ * Point tracking (in announcements)
+ *
  */
 // default height
 var HEIGHT = 0.8;
@@ -47,18 +51,18 @@ var points = 0;
 
 var COLOR =
 {
-"Adams House": {color: "#DF01A5"},
-"Cabot House": {color: "#8A0886"},
-"Currier House": {color: "#0B3861"},
-"Dunster House": {color: "#5F4C0B"},
-"Eliot House": {color: "#088A29"},
-"Kirkland House": {color: "#81F7D8"},
-"Leverett House": {color: "##141907"},
-"Lowell House": {color: "#157F6F"},
-"Mather House": {color: "#111111"},
-"Pforzheimer House": {color: "#953ABC"},
-"Quincy House": {color: "#5B650F"},
-"Winthrop House": {color: "#DC270B"}
+    "Adams House": {color: "#DF01A5"},
+    "Cabot House": {color: "#8A0886"},
+    "Currier House": {color: "#0B3861"},
+    "Dunster House": {color: "#5F4C0B"},
+    "Eliot House": {color: "#088A29"},
+    "Kirkland House": {color: "#81F7D8"},
+    "Leverett House": {color: "##141907"},
+    "Lowell House": {color: "#157F6F"},
+    "Mather House": {color: "#111111"},
+    "Pforzheimer House": {color: "#953ABC"},
+    "Quincy House": {color: "#5B650F"},
+    "Winthrop House": {color: "#DC270B"}
 };
 
 // load version 1 of the Google Earth API
