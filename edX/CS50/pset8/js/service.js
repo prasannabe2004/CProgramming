@@ -1,15 +1,15 @@
 /**
-* service.js
-*
-* Computer Science 50
-* Problem Set 8
-*
-*/
+ * service.js
+ *
+ * Computer Science 50
+ * Problem Set 8
+ *
+ */
 /**
-*
-* Additional Features: Speed up/Speed down (r/e keys),
-* color coded seat map, point tracking (in announcements)
-*/
+ *
+ * Additional Features: Speed up/Speed down (r/e keys),
+ * color coded seat map, point tracking (in announcements)
+ */
 // default height
 var HEIGHT = 0.8;
 
@@ -93,8 +93,8 @@ $(window).unload(function() {
 });
 
 /**
-* Renders seating chart.
-*/
+ * Renders seating chart.
+ */
 function chart()
 {
     var html = "<ol start='0'>";
@@ -112,9 +112,10 @@ function chart()
     html += "</ol>";
     $("#chart").html(html);
 }
+
 /**
-* Drops up passengers if their stop is nearby.
-*/
+ * Drops up passengers if their stop is nearby.
+ */
 function dropoff()
 {
     // set up a variable to check if any houses are in range
@@ -151,9 +152,10 @@ function dropoff()
         $("#announcements").html("No houses are close enough for drop off.");
     }
 }
+
 /**
-* Called if Google Earth fails to load.
-*/
+ * Called if Google Earth fails to load.
+ */
 function failureCB(errorCode)
 {
     // report error unless plugin simply isn't installed
@@ -162,54 +164,68 @@ function failureCB(errorCode)
         alert(errorCode);
     }
 }
+
 /**
-* Handler for Earth's frameend event.
-*/
+ * Handler for Earth's frameend event.
+ */
 function frameend()
 {
     shuttle.update();
 }
+
 /**
-* Called once Google Earth has loaded.
-*/
+ * Called once Google Earth has loaded.
+ */
 function initCB(instance)
 {
     // retain reference to GEPlugin instance
     earth = instance;
+
     // specify the speed at which the camera moves
     earth.getOptions().setFlyToSpeed(100);
+
     // show buildings
     earth.getLayerRoot().enableLayerById(earth.LAYER_BUILDINGS, true);
+
     // disable terrain (so that Earth is flat)
     earth.getLayerRoot().enableLayerById(earth.LAYER_TERRAIN, false);
+
     // prevent mouse navigation in the plugin
     earth.getOptions().setMouseNavigationEnabled(false);
+
     // instantiate shuttle
     shuttle = new Shuttle({
-    heading: HEADING,
-    height: HEIGHT,
-    latitude: LATITUDE,
-    longitude: LONGITUDE,
-    planet: earth,
-    seats: SEATS,
-    velocity: VELOCITY
+        heading: HEADING,
+        height: HEIGHT,
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+        planet: earth,
+        seats: SEATS,
+        velocity: VELOCITY
     });
+
     // synchronize camera with Earth
     google.earth.addEventListener(earth, "frameend", frameend);
+
     // synchronize map with Earth
     google.earth.addEventListener(earth.getView(), "viewchange", viewchange);
+
     // update shuttle's camera
     shuttle.updateCamera();
+
     // show Earth
     earth.getWindow().setVisibility(true);
+
     // render seating chart
     chart();
+
     // populate Earth with passengers and houses
     populate();
 }
+
 /**
-* Handles keystrokes.
-*/
+ * Handles keystrokes.
+ */
 function keystroke(event, state)
 {
     // ensure we have event
@@ -217,6 +233,7 @@ function keystroke(event, state)
     {
         event = window.event;
     }
+
     // left arrow
     if (event.keyCode == 37)
     {
@@ -224,6 +241,7 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
+
     // up arrow
     else if (event.keyCode == 38)
     {
@@ -231,6 +249,7 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
+
     // right arrow
     else if (event.keyCode == 39)
     {
@@ -238,6 +257,7 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
+
     // down arrow
     else if (event.keyCode == 40)
     {
@@ -245,6 +265,7 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
+
     // A, a
     else if (event.keyCode == 65 || event.keyCode == 97)
     {
@@ -252,6 +273,7 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
+
     // D, d
     else if (event.keyCode == 68 || event.keyCode == 100)
     {
@@ -259,6 +281,7 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
+
     // S, s
     else if (event.keyCode == 83 || event.keyCode == 115)
     {
@@ -266,6 +289,7 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
+
     // W, w
     else if (event.keyCode == 87 || event.keyCode == 119)
     {
@@ -273,6 +297,7 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
+
     // speed up with r, R
     else if (event.keyCode == 82 || event.keyCode == 114)
     {
@@ -280,6 +305,7 @@ function keystroke(event, state)
         $("#announcements").html("Current speed is: " + shuttle.velocity);
         return false;
     }
+
     // speed down with e, E
     else if (event.keyCode == 69 || event.keyCode == 101)
     {
@@ -287,35 +313,38 @@ function keystroke(event, state)
         $("#announcements").html("Current speed is: " + shuttle.velocity);
         return false;
     }
+
     return true;
 }
+
 /**
-* Loads application.
-*/
+ * Loads application.
+ */
 function load()
 {
     // embed 2D map in DOM
     var latlng = new google.maps.LatLng(LATITUDE, LONGITUDE);
     map = new google.maps.Map($("#map").get(0), {
-    center: latlng,
-    disableDefaultUI: true,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    scrollwheel: false,
-    zoom: 17,
-    zoomControl: true
+        center: latlng,
+        disableDefaultUI: true,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: false,
+        zoom: 17,
+        zoomControl: true
     });
     // prepare shuttle's icon for map
     bus = new google.maps.Marker({
-    icon: "https://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/bus.png",
-    map: map,
-    title: "you are here"
+        icon: "https://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/bus.png",
+        map: map,
+        title: "you are here"
     });
     // embed 3D Earth in DOM
     google.earth.createInstance("earth", initCB, failureCB);
 }
+
 /**
-* Picks up nearby passengers.
-*/
+ * Picks up nearby passengers.
+ */
 function pickup()
 {
     // initialize a variable that will be used at the end
@@ -382,9 +411,10 @@ function pickup()
         $("#announcements").html("No people close enough for pickup!");
     }
 }
+
 /**
-* Populates Earth with passengers and houses.
-*/
+ * Populates Earth with passengers and houses.
+ */
 function populate()
 {
     // mark houses
@@ -392,61 +422,74 @@ function populate()
     {
         // plant house on map
         new google.maps.Marker({
-        icon: "https://google-maps-icons.googlecode.com/files/home.png",
-        map: map,
-        position: new google.maps.LatLng(HOUSES[house].lat, HOUSES[house].lng),
-        title: house
+            icon: "https://google-maps-icons.googlecode.com/files/home.png",
+            map: map,
+            position: new google.maps.LatLng(HOUSES[house].lat, HOUSES[house].lng),
+            title: house
         });
     }
+
     // get current URL, sans any filename
     var url = window.location.href.substring(0, (window.location.href.lastIndexOf("/")) + 1);
+
     // scatter passengers
     for (var i = 0; i < PASSENGERS.length; i++)
     {
         // pick a random building
         var building = BUILDINGS[Math.floor(Math.random() * BUILDINGS.length)];
+
         // prepare placemark
         var placemark = earth.createPlacemark("");
         placemark.setName(PASSENGERS[i].name + " to " + PASSENGERS[i].house);
+
         // prepare icon
         var icon = earth.createIcon("");
         icon.setHref(url + "/img/" + PASSENGERS[i].username + ".jpg");
+
         // prepare style
         var style = earth.createStyle("");
         style.getIconStyle().setIcon(icon);
         style.getIconStyle().setScale(4.0);
+
         // prepare stylemap
         var styleMap = earth.createStyleMap("");
         styleMap.setNormalStyle(style);
         styleMap.setHighlightStyle(style);
+
         // associate stylemap with placemark
         placemark.setStyleSelector(styleMap);
+
         // prepare point
         var point = earth.createPoint("");
         point.setAltitudeMode(earth.ALTITUDE_RELATIVE_TO_GROUND);
         point.setLatitude(building.lat);
         point.setLongitude(building.lng);
         point.setAltitude(0.0);
+
         // associate placemark with point
         placemark.setGeometry(point);
+
         // add placemark to Earth
         earth.getFeatures().appendChild(placemark);
+
         // add marker to map
         var marker = new google.maps.Marker({
-        icon: "https://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/man.png",
-        map: map,
-        position: new google.maps.LatLng(building.lat, building.lng),
-        title: PASSENGERS[i].name + " at " + building.name
+            icon: "https://maps.gstatic.com/intl/en_us/mapfiles/ms/micons/man.png",
+            map: map,
+            position: new google.maps.LatLng(building.lat, building.lng),
+            title: PASSENGERS[i].name + " at " + building.name
         });
+        // TODO: remember passenger's placemark and marker for pick-up's sake
         // Adds marker and placemarker objects to the PASSENGER global array
         // for each passenger
         PASSENGERS[i].marker = marker;
         PASSENGERS[i].placemark = placemark;
     }
 }
+
 /**
-* Handler for Earth's viewchange event.
-*/
+ * Handler for Earth's viewchange event.
+ */
 function viewchange()
 {
     // keep map centered on shuttle's marker
@@ -455,8 +498,8 @@ function viewchange()
     bus.setPosition(latlng);
 }
 /**
-* Unloads Earth.
-*/
+ * Unloads Earth.
+ */
 function unload()
 {
     google.earth.removeEventListener(earth.getView(), "viewchange", viewchange);
