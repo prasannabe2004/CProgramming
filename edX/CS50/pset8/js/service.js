@@ -46,9 +46,11 @@ var map = null;
 // global reference to shuttle
 var shuttle = null;
 
+//TODO
 // global points
 var points = 0;
 
+//TODO
 var COLOR =
 {
     "Adams House": {color: "#DF01A5"},
@@ -97,6 +99,7 @@ $(window).load(function() {
     // load application
     load();
 });
+
 // unload application
 $(window).unload(function() {
     unload();
@@ -116,6 +119,7 @@ function chart()
         }
         else
         {
+            //TODO
             html += "<li style=color:" + COLOR[shuttle.seats[i].house].color + "><b>" + shuttle.seats[i].name + ", " + shuttle.seats[i].house + "</b></li>";
         }
     }
@@ -249,6 +253,7 @@ function keystroke(event, state)
     if (event.keyCode == 37)
     {
         shuttle.states.turningLeftward = state;
+        //TODO
         $("#announcements").html("no announcements at this time");
         return false;
     }
@@ -257,6 +262,7 @@ function keystroke(event, state)
     else if (event.keyCode == 38)
     {
         shuttle.states.tiltingUpward = state;
+        //TODO
         $("#announcements").html("no announcements at this time");
         return false;
     }
@@ -265,6 +271,7 @@ function keystroke(event, state)
     else if (event.keyCode == 39)
     {
         shuttle.states.turningRightward = state;
+        //TODO
         $("#announcements").html("no announcements at this time");
         return false;
     }
@@ -273,6 +280,7 @@ function keystroke(event, state)
     else if (event.keyCode == 40)
     {
         shuttle.states.tiltingDownward = state;
+        //TODO
         $("#announcements").html("no announcements at this time");
         return false;
     }
@@ -281,6 +289,7 @@ function keystroke(event, state)
     else if (event.keyCode == 65 || event.keyCode == 97)
     {
         shuttle.states.slidingLeftward = state;
+        //TODO
         $("#announcements").html("no announcements at this time");
         return false;
     }
@@ -289,6 +298,7 @@ function keystroke(event, state)
     else if (event.keyCode == 68 || event.keyCode == 100)
     {
         shuttle.states.slidingRightward = state;
+        //TODO
         $("#announcements").html("no announcements at this time");
         return false;
     }
@@ -297,6 +307,7 @@ function keystroke(event, state)
     else if (event.keyCode == 83 || event.keyCode == 115)
     {
         shuttle.states.movingBackward = state;
+        //TODO
         $("#announcements").html("no announcements at this time");
         return false;
     }
@@ -305,6 +316,7 @@ function keystroke(event, state)
     else if (event.keyCode == 87 || event.keyCode == 119)
     {
         shuttle.states.movingForward = state;
+        //TODO
         $("#announcements").html("no announcements at this time");
         return false;
     }
@@ -324,6 +336,7 @@ function keystroke(event, state)
         $("#announcements").html("Current speed is: " + shuttle.velocity);
         return false;
     }
+
     return true;
 }
 
@@ -359,6 +372,7 @@ function load()
  */
 function pickup()
 {
+    //TODO
     // initialize a variable that will be used at the end
     // to indicate whether someone has been picked
     var check = 0;
