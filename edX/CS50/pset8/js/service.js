@@ -372,26 +372,19 @@ function load()
  */
 function pickup()
 {
-    //TODO
-    // initialize a variable that will be used at the end
-    // to indicate whether someone has been picked
     var check = 0;
     for (var i in PASSENGERS)
     {
-        // skip any passengers that are no longer
-        // on the map since they have already been
-        // picked up.
         if(PASSENGERS[i].placemark != null)
         {
-            // figure out each person's distance from the shuttle
             lat = PASSENGERS[i].placemark.getGeometry().getLatitude();
             long = PASSENGERS[i].placemark.getGeometry().getLongitude();
             var dis = shuttle.distance(lat, long);
-            // make sure person is close enough
             if (dis < 15 )
             {
                 // set check to 1 to indicate a person was picked up
                 check = 1;
+                availableSeat = 0;
                 // ignore freshman
                 if (PASSENGERS[i].house in HOUSES == false)
                 {
@@ -401,36 +394,23 @@ function pickup()
                 // iterate over the length of the seats
                 for (var j = 0; j < shuttle.seats.length; j++)
                 {
-                    // initialize a variable to indicate later if seats are
-                    // full
-
-                    // if a seat is empty, fill it.
                     if (shuttle.seats[j] == null)
                     {
-                        // indicate that the shuttle was not full.
-                        checkfull = 0;
-                        // move the passenger to the seat and remake the seat map
+                        availableSeat = 1;
                         shuttle.seats[j] = PASSENGERS[i];
                         $("#announcements").html("Points: " + points);
                         chart();
-                        // remove the placemark and marker from the maps
                         var features = earth.getFeatures();
                         features.removeChild(PASSENGERS[i].placemark);
                         PASSENGERS[i].placemark = null;
                         PASSENGERS[i].marker.setMap(null);
                         PASSENGERS[i].marker = null;
-                        // reset the announcements to the default.
                         break;
                     }
-                    else
-                    {
-                        checkfull = 1;
-                    }
                 }
-                // if the shuttle is full, announce that it is full.
-                if (checkfull == 1)
+                if (availableSeat == 0)
                 {
-                    $("#announcements").html("Sorry, we are out of room!");
+                    $("#announcements").html("Sorry, No seats available!");
                 }
             }
         }
