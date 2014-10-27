@@ -403,7 +403,7 @@ function pickup()
                 {
                     // initialize a variable to indicate later if seats are
                     // full
-                    checkfull = 1;
+
                     // if a seat is empty, fill it.
                     if (shuttle.seats[j] == null)
                     {
@@ -421,6 +421,10 @@ function pickup()
                         PASSENGERS[i].marker = null;
                         // reset the announcements to the default.
                         break;
+                    }
+                    else
+                    {
+                        checkfull = 1;
                     }
                 }
                 // if the shuttle is full, announce that it is full.
