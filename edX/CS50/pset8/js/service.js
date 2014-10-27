@@ -171,7 +171,7 @@ function dropoff()
 /**
  * Called if Google Earth fails to load.
  */
-function failureCB(errorCode)
+function failureCB(errorCode) 
 {
     // report error unless plugin simply isn't installed
     if (errorCode != ERR_CREATE_PLUGIN)
@@ -183,7 +183,7 @@ function failureCB(errorCode)
 /**
  * Handler for Earth's frameend event.
  */
-function frameend()
+function frameend() 
 {
     shuttle.update();
 }
@@ -191,7 +191,7 @@ function frameend()
 /**
  * Called once Google Earth has loaded.
  */
-function initCB(instance)
+function initCB(instance) 
 {
     // retain reference to GEPlugin instance
     earth = instance;
@@ -302,7 +302,7 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
-
+  
     // S, s
     else if (event.keyCode == 83 || event.keyCode == 115)
     {
@@ -517,7 +517,7 @@ function populate()
 /**
  * Handler for Earth's viewchange event.
  */
-function viewchange()
+function viewchange() 
 {
     // keep map centered on shuttle's marker
     var latlng = new google.maps.LatLng(shuttle.position.latitude, shuttle.position.longitude);
