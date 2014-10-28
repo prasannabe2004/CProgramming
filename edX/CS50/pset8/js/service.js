@@ -464,8 +464,6 @@ function populate()
         });
 
         // TODO: remember passenger's placemark and marker for pick-up's sake
-        // Adds marker and placemarker objects to the PASSENGER global array
-        // for each passenger
         PASSENGERS[i].marker = marker;
         PASSENGERS[i].placemark = placemark;
     }
