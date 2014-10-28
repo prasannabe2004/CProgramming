@@ -232,7 +232,7 @@ function keystroke(event, state)
     {
         shuttle.states.turningLeftward = state;
         //TODO
-        $("#announcements").html("no announcements at this time");
+        $("#announcements").html("No Announcements");
         return false;
     }
 
@@ -241,7 +241,7 @@ function keystroke(event, state)
     {
         shuttle.states.tiltingUpward = state;
         //TODO
-        $("#announcements").html("no announcements at this time");
+        $("#announcements").html("No Announcements");
         return false;
     }
 
@@ -250,7 +250,7 @@ function keystroke(event, state)
     {
         shuttle.states.turningRightward = state;
         //TODO
-        $("#announcements").html("no announcements at this time");
+        $("#announcements").html("No Announcements");
         return false;
     }
 
@@ -259,7 +259,7 @@ function keystroke(event, state)
     {
         shuttle.states.tiltingDownward = state;
         //TODO
-        $("#announcements").html("no announcements at this time");
+        $("#announcements").html("No Announcements");
         return false;
     }
 
@@ -268,7 +268,7 @@ function keystroke(event, state)
     {
         shuttle.states.slidingLeftward = state;
         //TODO
-        $("#announcements").html("no announcements at this time");
+        $("#announcements").html("No Announcements");
         return false;
     }
 
@@ -277,7 +277,7 @@ function keystroke(event, state)
     {
         shuttle.states.slidingRightward = state;
         //TODO
-        $("#announcements").html("no announcements at this time");
+        $("#announcements").html("No Announcements");
         return false;
     }
   
@@ -286,7 +286,7 @@ function keystroke(event, state)
     {
         shuttle.states.movingBackward = state;
         //TODO
-        $("#announcements").html("no announcements at this time");
+        $("#announcements").html("No Announcements");
         return false;
     }
 
@@ -295,14 +295,14 @@ function keystroke(event, state)
     {
         shuttle.states.movingForward = state;
         //TODO
-        $("#announcements").html("no announcements at this time");
+        $("#announcements").html("No Announcements");
         return false;
     }
     // speed up with 1
     else if (event.keyCode == 49)
     {
         shuttle.velocity = shuttle.velocity + 2;
-        $("#announcements").html("Current speed is: " + shuttle.velocity);
+        $("#announcements").html("Current speed = " + shuttle.velocity);
         return false;
     }
 
@@ -310,7 +310,7 @@ function keystroke(event, state)
     else if (event.keyCode == 48)
     {
         shuttle.velocity = shuttle.velocity - 2;
-        $("#announcements").html("Current speed is: " + shuttle.velocity);
+        $("#announcements").html("Current speed = " + shuttle.velocity);
         return false;
     }
 
