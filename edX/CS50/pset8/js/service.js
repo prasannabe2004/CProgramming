@@ -307,16 +307,16 @@ function keystroke(event, state)
         return false;
     }
     //TODO
-    // speed up with r, R
-    else if (event.keyCode == 82 || event.keyCode == 114)
+    // speed up with +
+    else if (event.keyCode == 43)
     {
         shuttle.velocity = shuttle.velocity + 2;
         $("#announcements").html("Current speed is: " + shuttle.velocity);
         return false;
     }
 
-    // speed down with e, E
-    else if (event.keyCode == 69 || event.keyCode == 101)
+    // speed down with -
+    else if (event.keyCode == 45)
     {
         shuttle.velocity = shuttle.velocity - 2;
         $("#announcements").html("Current speed is: " + shuttle.velocity);
