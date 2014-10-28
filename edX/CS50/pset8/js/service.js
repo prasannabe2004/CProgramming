@@ -13,7 +13,6 @@
  *
  * Speed up/Speed down (r/e keys)
  * Color coded seat map
- * Point tracking (in announcements)
  *
  */
 // default height
@@ -46,7 +45,6 @@ var map = null;
 // global reference to shuttle
 var shuttle = null;
 
-//TODO
 // global points
 var points = 0;
 
@@ -132,37 +130,25 @@ function chart()
  */
 function dropoff()
 {
-    //alert("TODO");
-    // set up a variable to check if any houses are in range
-    var dropcheck = 0;
-    // iterate over the shuttle's seats
+    var flag = 0;
     for (var k = 0; k < shuttle.seats.length; k++)
     {
-        // skip any seats that have no one in them.
         if(shuttle.seats[k] != null)
         {
-            // get the latitude and longitude of the destination house
-            // of the person in the kth seat
-            lathouse = HOUSES[shuttle.seats[k].house].lat;
-            longhouse = HOUSES[shuttle.seats[k].house].lng;
-            // calculate the distance to the house
-            var housedis = shuttle.distance(lathouse, longhouse);
-            // if the house is close enough...
-            if (housedis < 30)
+            lat = HOUSES[shuttle.seats[k].house].lat;
+            long = HOUSES[shuttle.seats[k].house].lng;
+            var dis = shuttle.distance(lat, long);
+            if (dis < 30)
             {
-                // empty the seat
                 shuttle.seats[k] = null;
                 points++;
                 $("#announcements").html("Points: " + points);
-                // reset the seat map
                 chart();
-                // indicate that a drop has been made
-                dropcheck = 1;
+                flag = 1;
             }
         }
     }
-    // If no houses were in range, say so.
-    if(dropcheck == 0)
+    if(flag == 0)
     {
         $("#announcements").html("No houses are close enough for drop off.");
     }
@@ -382,16 +368,13 @@ function pickup()
             var dis = shuttle.distance(lat, long);
             if (dis < 15 )
             {
-                // set check to 1 to indicate a person was picked up
                 check = 1;
                 availableSeat = 0;
-                // ignore freshman
                 if (PASSENGERS[i].house in HOUSES == false)
                 {
                     $("#announcements").html("Sorry no freshman allowed.");
                     break;
                 }
-                // iterate over the length of the seats
                 for (var j = 0; j < shuttle.seats.length; j++)
                 {
                     if (shuttle.seats[j] == null)
@@ -415,7 +398,6 @@ function pickup()
             }
         }
     }
-    // if no one is in the shuttle's range, announce it.
     if (check == 0)
     {
         $("#announcements").html("No people close enough for pickup!");
