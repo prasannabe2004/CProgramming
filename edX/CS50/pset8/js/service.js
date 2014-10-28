@@ -7,14 +7,6 @@
  * Implements a shuttle service.
  */
 
-/**
- *
- * Additional Features:
- *
- * Speed up/Speed down (r/e keys)
- * Color coded seat map
- *
- */
 // default height
 var HEIGHT = 0.8;
 
@@ -306,7 +298,6 @@ function keystroke(event, state)
         $("#announcements").html("no announcements at this time");
         return false;
     }
-    //TODO
     // speed up with 1
     else if (event.keyCode == 49)
     {
